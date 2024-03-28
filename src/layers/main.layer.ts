@@ -8,10 +8,12 @@ import { flowConfirm } from "../flows/confirm.flow"
 /**
  * Determina que flujo va a iniciarse basado en el historial que previo entre el bot y el humano
  */
-export default async (_: BotContext, { state, gotoFlow, extensions }: BotMethods) => {
+export default async (context: BotContext, { state, gotoFlow, extensions }: BotMethods) => {
+    console.log(context)
     const ai = extensions.ai as AIClass
     const history = getHistoryParse(state)
-    const prompt = `Como una inteligencia artificial avanzada, tu tarea es analizar el contexto de una conversación y determinar cuál de las siguientes acciones es más apropiada para realizar:
+    const userNameSpecification = ` cuyo nombre es ${context.name}`
+    const prompt = `Como una inteligencia artificial avanzada, tu tarea es analizar el contexto de una conversación${userNameSpecification} y determinar cuál de las siguientes acciones es más apropiada para realizar:
     --------------------------------------------------------
     Historial de conversación:
     {HISTORY}
@@ -31,7 +33,6 @@ export default async (_: BotContext, { state, gotoFlow, extensions }: BotMethods
             content: prompt
         }
     ])
-
     if (text.includes('HABLAR')) return gotoFlow(flowSeller)
     if (text.includes('AGENDAR')) return gotoFlow(flowSchedule)
     if (text.includes('CONFIRMAR')) return gotoFlow(flowConfirm)

@@ -4,16 +4,20 @@ import { getHistoryParse, handleHistory } from "../utils/handleHistory";
 import AIClass from "../services/ai";
 import { getFullCurrentDate } from "src/utils/currentDate";
 
-const PROMPT_SELLER = `Eres el asistente virtual en la prestigiosa barbería "Barbería Flow 25", ubicada en Madrid, Plaza de Castilla 4A. Tu principal responsabilidad es responder a las consultas de los clientes y ayudarles a programar sus citas.
+const PROMPT_SELLER = `Eres el asistente virtual en la empresa de tecnología y Software as a Services "The Old School Services", ubicada en 3 de Febrero al 711, Partido de José C. Paz, provincia de Buenos Aires, Argentina. Tu principal responsabilidad es responder a las consultas de los clientes sobre nuestra empresa y los servicios que ofrecemos y ayudarles a agendar una primera reunión virtual vía meet para que puedan expresarnos a detalle su necesidad.
 
 FECHA DE HOY: {CURRENT_DAY}
 
-SOBRE "BARBERÍA FLOW 25":
-Nos distinguimos por ofrecer cortes de cabello modernos y siempre a la vanguardia. Nuestro horario de atención es de lunes a viernes, desde las 09:00 hasta las 17:00. Para más información, visita nuestro sitio web en "barberflow.co". Aceptamos pagos en efectivo y a través de PayPal. Recuerda que es necesario programar una cita.
+SOBRE "The Old School Services":
+Nos distinguimos por ayudar a la pequeñas y medianas empresas o Startups a digitalizar y automatizar su modelo de negocio. 
+Nuestro horario de atención es de lunes a viernes, desde las 09:00 hasta las 17:00. 
+Para más información, visita nuestro sitio web en "https://theoldschool.services". 
+Aceptamos pagos en efectivo y a través de PayPal. Recuerda que es necesario programar una cita para entender bien la necesidad del cliente.
 
-PRECIOS DE LOS SERVICIOS:
-- Corte de pelo de hombre 10USD
-- Corte de pelo + barba 15 USD
+LISTADO DE SERVICIOS:
+- Automatización de cargas de trabajo y procesos
+- Creación de contenido digital
+- Capacitaciones para empleados
 
 HISTORIAL DE CONVERSACIÓN:
 --------------
@@ -21,15 +25,16 @@ HISTORIAL DE CONVERSACIÓN:
 --------------
 
 DIRECTRICES DE INTERACCIÓN:
-1. Anima a los clientes a llegar 5 minutos antes de su cita para asegurar su turno.
-2. Evita sugerir modificaciones en los servicios, añadir extras o ofrecer descuentos.
-3. Siempre reconfirma el servicio solicitado por el cliente antes de programar la cita para asegurar su satisfacción.
+1. Anima a los clientes a agendar una reunión con un asesor de ventas de nuestra compañía.
+2. Si el cliente pregunta por precios o costos de los servicios indicale que debe agendar una cita para que sea asesorado en su necesidad puntual.
+3. Evita sugerir modificaciones en los servicios, añadir extras u ofrecer descuentos.
+4. Siempre reconfirma el servicio solicitado por el cliente antes de programar la cita para asegurar su satisfacción.
 
 
 EJEMPLOS DE RESPUESTAS:
 "Claro, ¿cómo puedo ayudarte a programar tu cita?"
 "Recuerda que debes agendar tu cita..."
-"como puedo ayudarte..."
+"cómo puedo ayudarte..."
 
 INSTRUCCIONES:
 - NO saludes
@@ -51,14 +56,15 @@ const flowSeller = addKeyword(EVENTS.ACTION).addAction(async (_, { state, flowDy
         const ai = extensions.ai as AIClass
         const history = getHistoryParse(state)
         const prompt = generatePromptSeller(history)
-
+        console.log("PROMPT SELLER")
+        console.log(prompt)
         const text = await ai.createChat([
             {
                 role: 'system',
                 content: prompt
             }
         ])
-
+        console.log("seller.flow response: "+text)
         await handleHistory({ content: text, role: 'assistant' }, state)
 
         const chunks = text.split(/(?<!\d)\.\s+/g);

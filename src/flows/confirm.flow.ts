@@ -8,24 +8,24 @@ const generatePromptToFormatDate = (history: string) => {
     const prompt = `Fecha de Hoy:${getFullCurrentDate()}, Basado en el Historial de conversacion: 
     ${history}
     ----------------
-    Fecha ideal:...dd / mm hh:mm`
+    Fecha ideal: dd/mm hh:mm`
 
     return prompt
 }
 
 const generateJsonParse = (info: string) => {
-    const prompt = `tu tarea principal es analizar la información proporcionada en el contexto y generar un objeto JSON que se adhiera a la estructura especificada a continuación. 
+    const prompt = `Tu tarea principal es analizar la información proporcionada en el contexto y generar un objeto JSON que se adhiera a la estructura especificada a continuación. 
 
     Contexto: "${info}"
     
     {
-        "name": "Leifer",
+        "name": "Lucas Frías",
         "interest": "n/a",
         "value": "0",
-        "email": "fef@fef.com",
+        "email": "lucasfrias@gmail.com",
         "startDate": "2024/02/15 00:00:00"
     }
-    
+    Aclaración importante: El formato de "startDate" siempre debe ser "YYYY/MM/DD HH:MM:SS".
     Objeto JSON a generar:`
 
     return prompt
@@ -56,7 +56,7 @@ const flowConfirm = addKeyword(EVENTS.ACTION).addAction(async (_, { flowDynamic 
         await flowDynamic(`Ultima pregunta ¿Cual es tu email?`)
     })
     .addAction({ capture: true }, async (ctx, { state, extensions, flowDynamic }) => {
-        const infoCustomer = `Name: ${state.get('name')}, StarteDate: ${state.get('startDate')}, email: ${ctx.body}`
+        const infoCustomer = `Name: ${state.get('name')}, StartDate: ${state.get('startDate')}, email: ${ctx.body}`
         const ai = extensions.ai as AIClass
 
         const text = await ai.createChat([
@@ -68,7 +68,7 @@ const flowConfirm = addKeyword(EVENTS.ACTION).addAction(async (_, { flowDynamic 
 
         await appToCalendar(text)
         clearHistory(state)
-        await flowDynamic('Listo! agendado Buen dia')
+        await flowDynamic('Su turno ya fue agendado! Muchas gracias por contactarnos.')
     })
 
 export { flowConfirm }

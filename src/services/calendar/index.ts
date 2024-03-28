@@ -9,11 +9,12 @@ const getCurrentCalendar = async (): Promise<string> => {
     const json: any[] = await dataCalendarApi.json()
     const list = json.reduce((prev, current) => {
         return prev += [
-            `Espacio reservado (no disponible): `,
+            `Espacio reservado (NO disponible): `,
             `Desde ${format(current.date, 'eeee do h:mm a')} `,
             `Hasta ${format(addMinutes(current.date, 45), 'eeee do h:mm a')} \n`,
         ].join(' ')
     }, '')
+    console.log(list)
     return list
 }
 
