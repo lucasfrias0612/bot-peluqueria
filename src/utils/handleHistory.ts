@@ -1,8 +1,10 @@
 import { BotState } from "@bot-whatsapp/bot/dist/types"
+import { closestTo } from "date-fns"
 
 export type History = { role: 'user' | 'assistant', content: string }
 
 const handleHistory = async (inside: History, _state: BotState) => {
+    console.log(_state)
     const history = _state.get<History[]>('history') ?? []
     history.push(inside)
     await _state.update({ history })

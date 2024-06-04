@@ -1,6 +1,5 @@
 import 'dotenv/config'
 import { createBot, MemoryDB, createProvider } from '@bot-whatsapp/bot'
-import { TelegramProvider } from '@builderbot-plugins/telegram'
 import { BaileysProvider } from '@bot-whatsapp/provider-baileys'
 
 import AIClass from './services/ai';

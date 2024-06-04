@@ -37,15 +37,15 @@ EJEMPLOS DE RESPUESTAS:
 "cómo puedo ayudarte..."
 
 INSTRUCCIONES:
-- NO saludes
+- Saluda al cliente respetuosamente por su nombre que es {USERNAME}
 - Respuestas cortas ideales para enviar por whatsapp con emojis
 
 Respuesta útil:`;
 
 
-export const generatePromptSeller = (history: string) => {
+export const generatePromptSeller = (history: string, username:string) => {
     const nowDate = getFullCurrentDate()
-    return PROMPT_SELLER.replace('{HISTORIAL_CONVERSACION}', history).replace('{CURRENT_DAY}', nowDate)
+    return PROMPT_SELLER.replace('{HISTORIAL_CONVERSACION}', history).replace('{CURRENT_DAY}', nowDate).replace('{USERNAME}',username)
 };
 
 /**
@@ -55,16 +55,13 @@ const flowSeller = addKeyword(EVENTS.ACTION).addAction(async (_, { state, flowDy
     try {
         const ai = extensions.ai as AIClass
         const history = getHistoryParse(state)
-        const prompt = generatePromptSeller(history)
-        console.log("PROMPT SELLER")
-        console.log(prompt)
+        const prompt = generatePromptSeller(history, state.get('name'))
         const text = await ai.createChat([
             {
                 role: 'system',
                 content: prompt
             }
         ])
-        console.log("seller.flow response: "+text)
         await handleHistory({ content: text, role: 'assistant' }, state)
 
         const chunks = text.split(/(?<!\d)\.\s+/g);
