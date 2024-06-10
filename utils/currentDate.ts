@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format } from "date-fns"
 
 const getFullCurrentDate = (): string => {
     const currentD = new Date();

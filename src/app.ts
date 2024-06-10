@@ -1,23 +1,61 @@
-import 'dotenv/config'
-import { createBot, MemoryDB, createProvider } from '@bot-whatsapp/bot'
-import { BaileysProvider } from '@bot-whatsapp/provider-baileys'
+import { createBot, createProvider, addKeyword, utils } from '@builderbot/bot';
+import { MemoryDB as Database } from '@builderbot/bot';
+import { BaileysProvider as Provider } from '@builderbot/provider-baileys';
+import flows from 'flows/index';
 
-import AIClass from './services/ai';
-import flows from './flows';
-
-const ai = new AIClass(process.env.OPEN_API_KEY, 'gpt-3.5-turbo-16k')
+const PORT = process.env.PORT ?? 3008;
 
 const main = async () => {
+    const adapterFlow = flows;
+    const adapterProvider = createProvider(Provider);
+    const adapterDB = new Database();
 
-    const provider = createProvider(BaileysProvider)
-    // const provider = createProvider(TelegramProvider, { token: process.env.TELEGRAM_API ?? '' })
+    const { handleCtx, httpServer } = await createBot({
+        flow: adapterFlow,
+        provider: adapterProvider,
+        database: adapterDB,
+    });
 
-    await createBot({
-        database: new MemoryDB(),
-        provider,
-        flow: flows
-    }, { extensions: { ai } })
+    adapterProvider.server.post(
+        '/v1/messages',
+        handleCtx(async (bot, req, res) => {
+            const { number, message, urlMedia } = req.body;
+            await bot.sendMessage(number, message, { media: urlMedia ?? null });
+            return res.end('sended');
+        })
+    );
 
-}
+    adapterProvider.server.post(
+        '/v1/register',
+        handleCtx(async (bot, req, res) => {
+            const { number, name } = req.body;
+            await bot.dispatch('REGISTER_FLOW', { from: number, name });
+            return res.end('trigger');
+        })
+    );
 
-main()
+    adapterProvider.server.post(
+        '/v1/samples',
+        handleCtx(async (bot, req, res) => {
+            const { number, name } = req.body;
+            await bot.dispatch('SAMPLES', { from: number, name });
+            return res.end('trigger');
+        })
+    );
+
+    adapterProvider.server.post(
+        '/v1/blacklist',
+        handleCtx(async (bot, req, res) => {
+            const { number, intent } = req.body;
+            if (intent === 'remove') bot.blacklist.remove(number);
+            if (intent === 'add') bot.blacklist.add(number);
+
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ status: 'ok', number, intent }));
+        })
+    );
+
+    httpServer(+PORT);
+};
+
+main();

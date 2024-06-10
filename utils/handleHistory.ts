@@ -1,4 +1,4 @@
-import { BotState } from "@bot-whatsapp/bot/dist/types"
+import { BotState } from "@builderbot/bot/dist/types"
 import { closestTo } from "date-fns"
 
 export type History = { role: 'user' | 'assistant', content: string }
