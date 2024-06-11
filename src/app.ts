@@ -1,6 +1,6 @@
 import { createBot, createProvider, MemoryDB } from '@builderbot/bot';
 import { postgreSQLDB } from './postgres-database';
-import { BaileysProvider as Provider } from '@builderbot/provider-baileys';
+import { WPPConnectProvider as Provider } from '@builderbot/provider-wppconnect';
 import flows from 'flows/index';
 
 const PORT = process.env.PORT ?? 3008;
@@ -19,8 +19,11 @@ const main = async () => {
     adapterProvider.server.post(
         '/v1/messages',
         handleCtx(async (bot, req, res) => {
-            const { number, message, urlMedia } = req.body;
-            await bot.sendMessage(number, message, { media: urlMedia ?? null });
+            const { number, message } = req.body;
+            console.log('number', number);
+            console.log('message', message);
+            console.log('bot', bot);
+            await bot.sendMessage(number, message, null);
             return res.end('sended');
         })
     );
