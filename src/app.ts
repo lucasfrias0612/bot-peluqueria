@@ -1,5 +1,5 @@
-import { createBot, createProvider, addKeyword, utils } from '@builderbot/bot';
-import { MemoryDB as Database } from '@builderbot/bot';
+import { createBot, createProvider, MemoryDB } from '@builderbot/bot';
+import { postgreSQLDB } from './postgres-database';
 import { BaileysProvider as Provider } from '@builderbot/provider-baileys';
 import flows from 'flows/index';
 
@@ -8,7 +8,7 @@ const PORT = process.env.PORT ?? 3008;
 const main = async () => {
     const adapterFlow = flows;
     const adapterProvider = createProvider(Provider);
-    const adapterDB = new Database();
+    const adapterDB = postgreSQLDB
 
     const { handleCtx, httpServer } = await createBot({
         flow: adapterFlow,
