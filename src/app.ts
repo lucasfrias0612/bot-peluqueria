@@ -4,7 +4,7 @@ import { postgreSQLDB } from './postgres-database';
 import { BaileysProvider as Provider } from '@builderbot/provider-baileys'
 import flows from 'flows/index';
 
-const PORT = process.env.PORT ?? 3008;
+const PORT = process.env.PORT ?? 80;
 
 const main = async () => {
     const adapterFlow = flows;
