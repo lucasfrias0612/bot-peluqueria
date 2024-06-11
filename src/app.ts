@@ -1,6 +1,7 @@
 import { createBot, createProvider, MemoryDB } from '@builderbot/bot';
 import { postgreSQLDB } from './postgres-database';
-import { WPPConnectProvider as Provider } from '@builderbot/provider-wppconnect';
+//import { WPPConnectProvider as Provider } from '@builderbot/provider-wppconnect';
+import { BaileysProvider as Provider } from '@builderbot/provider-baileys'
 import flows from 'flows/index';
 
 const PORT = process.env.PORT ?? 3008;
@@ -8,7 +9,7 @@ const PORT = process.env.PORT ?? 3008;
 const main = async () => {
     const adapterFlow = flows;
     const adapterProvider = createProvider(Provider);
-    const adapterDB = postgreSQLDB
+    const adapterDB = new MemoryDB()
 
     const { handleCtx, httpServer } = await createBot({
         flow: adapterFlow,
@@ -19,14 +20,34 @@ const main = async () => {
     adapterProvider.server.post(
         '/v1/messages',
         handleCtx(async (bot, req, res) => {
-            const { number, message } = req.body;
-            console.log('number', number);
-            console.log('message', message);
-            console.log('bot', bot);
-            await bot.sendMessage(number, message, null);
-            return res.end('sended');
+            try {
+                const { number, message } = req.body;
+
+                if (!number || !message) {
+                    return res.status(400).json({ error: 'Number and message are required' });
+                }
+
+                if (!bot) {
+                    return res.status(500).json({ error: 'Bot not initialized' });
+                }
+
+                // Asegúrate de que el número de teléfono tenga el formato correcto
+                const formattedNumber = `${number}@s.whatsapp.net`; // ajusta el dominio según sea necesario
+
+                // Llamada a sendMessage con opciones correctamente manejadas
+                await bot.sendMessage(formattedNumber, message, {});
+
+                return res.end('sended');
+            } catch (error) {
+                console.error('Error sending message:', error);
+                if (error.output?.statusCode === 410) {
+                    return res.status(500).json({ error: 'Authentication required, please scan the QR code again' });
+                }
+                return res.status(500).json({ error: 'Failed to send message' });
+            }
         })
     );
+
 
     adapterProvider.server.post(
         '/v1/register',
