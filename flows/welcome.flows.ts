@@ -1,6 +1,14 @@
 import { addKeyword, EVENTS } from "@builderbot/bot";
 import { BotContext } from "@builderbot/bot/dist/types";
 import { flowSeller } from "./seller.flow";
+import { fetchData, postData } from '../services/gohighlevel/api'
+import { config } from '../config/config';
+
+const { token, locationId } = config;
+const url = "https://services.leadconnectorhq.com/contacts/"
+const version = "2021-07-28"
+const authorization = 'Bearer ' + token
+let existe = false;
 
 const validateName = (name: string) => {
     const nameRegex = /^[a-zA-Z\s]+$/;
@@ -25,8 +33,28 @@ const welcomeFlow = addKeyword(EVENTS.WELCOME)
             const name = state.get('name');
             if (validateName(name)) {
                 await state.update({ name });
-                // Request POST a la API para generar un contact
-                return gotoFlow(flowSeller);
+                try {
+                    const data = await fetchData({ url, locationId, authorization, version });
+                    existe = data.contacts.some(contact => contact.phone === context.from);
+                    
+                    if (!existe) {
+                        const postPayload = {
+                            name: context.name,
+                            locationId: locationId,
+                            phone: context.from
+                        };
+                        try {
+                            const response = await postData({ url, locationId, authorization, version, data: postPayload });
+                            console.log(response);
+                        } catch (error) {
+                            console.error('Error al enviar los datos:', error);
+                        }
+                    }
+                    
+                    return gotoFlow(flowSeller);
+                } catch (error) {
+                    console.error('Error al obtener los datos:', error);
+                }
             } else {
                 return await flowDynamic('Por favor, ingresa un nombre válido (solo letras y espacios). ¿Cuál es tu nombre?');
             }
@@ -36,15 +64,34 @@ const welcomeFlow = addKeyword(EVENTS.WELCOME)
     })
     .addAction({ capture: true }, async (context: BotContext, { flowDynamic, gotoFlow, state }) => {
         let name = context.body.trim();
-
-        while (!validateName(name)) {
+        if (!validateName(name)) {
             await flowDynamic('Por favor, ingresa un nombre válido (solo letras y espacios). ¿Cuál es tu nombre?');
-            name = await state.get('body')
+            return;
         }
-
+        
         await state.update({ name: name });
-        // Request POST a la API para generar un contact
-        return gotoFlow(flowSeller);
+        try {
+            const data = await fetchData({ url, locationId, authorization, version });
+            existe = data.contacts.some(contact => contact.phone === context.from);
+            
+            if (!existe) {
+                const postPayload = {
+                    name: context.name,
+                    locationId: locationId,
+                    phone: context.from
+                };
+                try {
+                    const response = await postData({ url, locationId, authorization, version, data: postPayload });
+                    console.log(response);
+                } catch (error) {
+                    console.error('Error al enviar los datos:', error);
+                }
+            }
+            
+            return gotoFlow(flowSeller);
+        } catch (error) {
+            console.error('Error al obtener los datos:', error);
+        }
     });
 
 export { welcomeFlow };
