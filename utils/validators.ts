@@ -10,7 +10,7 @@ const isValidEmail = (email: string) => {
 
 const isAffirmative = (text: string) => {
     const affirmativeOptions = ['a huevo', 'simon', 'venga', 'si', 'claro', 'correcto', 'afirmativo', 'por supuesto', 'vale', 'orale', 'pues si', 'andale', 'ok', 'okay', 'okey', 'desde luego'];
-    text = text.toLocaleLowerCase().trim();
+    text = normalizeText(text.toLocaleLowerCase().trim());
     return affirmativeOptions.some(option => option == text);
 }
 
