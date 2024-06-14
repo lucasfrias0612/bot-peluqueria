@@ -8,33 +8,37 @@ const version = "2021-07-28"
 const authorization = 'Bearer ' + token
 
 interface Contact {
+    id: string;
     lastName: string;
     firstName: string;
     phone: string;
     locationId: string;
 }
+
 export async function findContact(context: BotContext) {
-    let contact: Contact = null
+    let existingContact: Contact = null
     try {
         const data = await fetchData({ url, locationId, authorization, version });
-        contact = data.contacts.find(contact => contact.phone === context.from || contact.phone.replace('+', '') === context.from);
+        existingContact = data.contacts.find(
+            contact => contact.phone && (contact.phone == context.from || contact.phone.replace('+', '') == context.from.replace('+', '')));
     } catch (error) {
         console.error('Error al buscar el contacto:', error);
     }
-    return contact;
+    return existingContact;
 }
 
 export async function createContact(state: BotStateStandAlone) {
     let contact: Contact = null
     const postPayload = {
-        firstName: state.get('name'),
         locationId: locationId,
-        phone: state.get('phone')
+        firstName: state.get('name'),
+        lastName: state.get('lastName'),
+        email: state.get('email'),
+        phone: state.get('phone').includes('+') ? state.get('phone') : '+' + state.get('phone'),
     };
     try {
         const response = await postData({ url, locationId, authorization, version, data: postPayload });
         contact = response.contact;
-        console.log(response);
     } catch (error) {
         console.error('Error al enviar los datos:', error);
     }

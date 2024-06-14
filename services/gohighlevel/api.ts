@@ -37,7 +37,6 @@ export async function postData({ url, locationId, authorization, version, data }
     const options = {
         method: 'POST',
         url: url,
-        params: { locationId: locationId },
         headers: {
             Authorization: authorization,
             Version: version,
@@ -49,7 +48,6 @@ export async function postData({ url, locationId, authorization, version, data }
   
     try {
         const response = await axios.request(options);
-        console.log('RESPONSE:', response.data);
         return response.data;
     } catch (error) {
         console.error('Error haciendo la solicitud POST:', error);

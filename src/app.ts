@@ -1,4 +1,4 @@
-import { createBot, createProvider, MemoryDB } from '@builderbot/bot';
+import { createBot, createProvider } from '@builderbot/bot';
 import { adapterDB as JsonFileDB } from './json-database';
 import { BaileysProvider as Provider } from '@builderbot/provider-baileys'
 import flows from 'flows/index';
@@ -16,6 +16,7 @@ const main = async () => {
         database: adapterDB,
     });
 
+    /*
     adapterProvider.server.post(
         '/v1/messages',
         handleCtx(async (bot, req, res) => {
@@ -77,7 +78,7 @@ const main = async () => {
             return res.end(JSON.stringify({ status: 'ok', number, intent }));
         })
     );
-
+    */
     httpServer(+PORT);
 };
 

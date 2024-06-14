@@ -4,6 +4,7 @@ import { flowSeller } from "./seller.flow";
 import { meetingFlow } from "./meeting.flow";
 import { flowAskName } from "./askName.flow";
 import { flowAskEmail } from "./askEmail.flow"
+import { flowAskLastName } from "./askLastName";
 
 const flowMedia = addKeyword(EVENTS.MEDIA)
     .addAnswer('He recibido tu foto o video pero actualmente no estoy preparado para interpretarla.')
@@ -43,9 +44,10 @@ const flows = createFlow([
     flowMedia,
     welcomeFlow,
     flowAskName,
+    flowAskLastName,
+    flowAskEmail,
     flowSeller,
-    meetingFlow,
-    flowAskEmail
+    meetingFlow    
 ]);
 
 export default flows;

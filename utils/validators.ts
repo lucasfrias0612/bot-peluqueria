@@ -8,4 +8,14 @@ const isValidEmail = (email: string) => {
     return emailRegex.test(email);
 }
 
-export { isValidName, isValidEmail };
+const isAffirmative = (text: string) => {
+    const affirmativeOptions = ['a huevo', 'simon', 'venga', 'si', 'claro', 'correcto', 'afirmativo', 'por supuesto', 'vale', 'orale', 'pues si', 'andale', 'ok', 'okay', 'okey', 'desde luego'];
+    text = text.toLocaleLowerCase().trim();
+    return affirmativeOptions.some(option => option == text);
+}
+
+const normalizeText = (text: string) => {
+    return text.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
+export { isValidName, isValidEmail, isAffirmative, normalizeText };
