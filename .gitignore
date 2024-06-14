@@ -3,11 +3,10 @@ node_modules
 .env
 
 pnpm-lock.yaml
-
+pnpm-lock.yaml
 *_sessions
 *tokens
 .wwebjs*
 
 *.log
 *qr.png
-pnpm-lock.yaml

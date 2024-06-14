@@ -3,4 +3,9 @@ const isValidName = (name: string) => {
     return nameRegex.test(name);
 };
 
-export { isValidName };
+const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+export { isValidName, isValidEmail };
