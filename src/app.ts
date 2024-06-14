@@ -1,15 +1,14 @@
 import { createBot, createProvider, MemoryDB } from '@builderbot/bot';
-import { postgreSQLDB } from './postgres-database';
-//import { WPPConnectProvider as Provider } from '@builderbot/provider-wppconnect';
+import { adapterDB as JsonFileDB } from './json-database';
 import { BaileysProvider as Provider } from '@builderbot/provider-baileys'
 import flows from 'flows/index';
 
-const PORT = process.env.PORT ?? 80;
+const PORT = process.env.PORT ?? 3008;
 
 const main = async () => {
     const adapterFlow = flows;
     const adapterProvider = createProvider(Provider);
-    const adapterDB = new MemoryDB()
+    const adapterDB = JsonFileDB
 
     const { handleCtx, httpServer } = await createBot({
         flow: adapterFlow,

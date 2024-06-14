@@ -11,12 +11,10 @@ const meetingFlow = addKeyword(["default"])
         //Consultar dias del calendario
         await flowDynamic("Días: 11/6, 12/6, 13/6. ¿Cuál de estos días te viene bien?");
     })
-    .addAction({ capture: true }, async (context: BotContext, { flowDynamic, state }) => {
+    .addAction({ capture: true }, async (context: BotContext, { flowDynamic, endFlow, state }) => {
         await state.update({ meetingDay: context.body });
-        await flowDynamic(`Perfecto, te esperamos el ${context.body}.`);
+        return endFlow(`Perfecto, te esperamos el ${context.body}.`);
     })
-    .addAction({ capture: false }, async (context: BotContext, { endFlow }) => {
-        return endFlow();
-    });
+    
 
 export { meetingFlow };

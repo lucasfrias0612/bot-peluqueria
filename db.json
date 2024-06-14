@@ -1,16 +1,24 @@
 [
   {
-    "ref": "2ad79e55-1cde-4e58-acef-cb72a165adb3",
-    "keyword": "312a1d84e4dc082baa17fd9ec1285e73",
+    "ref": "96f13256-2a5e-4a39-a197-8814135ec2ff",
+    "keyword": "b452383ad0a1a866d65c6150d1c955ed",
     "answer": "Hola",
     "options": {},
     "from": "5491159142277",
     "refSerialize": "c22e4066d61d81721def9b25d8a397e8"
   },
   {
-    "ref": "ans_85deac67-f673-48f5-b552-6e9c9b5b8544",
-    "keyword": "key_9e20c421-4146-4294-bdc8-fe794c51b8f0",
-    "answer": "¡Hola! Soy *TOSiBot* 😀, el asistente virtual de *The Old School Services*.",
+    "ref": "29068381-ab1b-485d-ac34-42fde744321e",
+    "keyword": "c22e4066d61d81721def9b25d8a397e8",
+    "answer": "Gol",
+    "options": {},
+    "from": "5491159142277",
+    "refSerialize": "7269d9d5473c357a8319635f70c12f93"
+  },
+  {
+    "ref": "ans_e1dd1bfc-d3a9-4243-9fed-87cbae1b0640",
+    "keyword": "key_0009ca6a-8b31-42c7-a650-190929573812",
+    "answer": "¡Hola! Soy *TOSSiBot* 😀, el asistente virtual de *The Old School Services*.",
     "options": {
       "buttons": [],
       "capture": false,
@@ -19,11 +27,82 @@
       "keyword": {},
       "callback": true
     },
-    "refSerialize": "e5fe707f28b86f09642a5cfe3d47d5a0",
+    "refSerialize": "dbeedb57b2eaa0c624721145a88ddce1",
+    "from": "5491159142277"
+  },
+  {
+    "ref": "bb005cb3-8813-43e9-92cf-1dc4e25bf4aa",
+    "keyword": null,
+    "answer": "Que bueno verte de nuevo lucas!",
+    "options": {
+      "media": null,
+      "buttons": [],
+      "capture": false,
+      "delay": 0
+    },
+    "from": "5491159142277",
+    "refSerialize": "c3e684fc3f750d363487e34af70f0369"
+  },
+  {
+    "ref": "ans_b223903b-6c93-41b4-bb1b-1278bc81c47a",
+    "keyword": "key_7d7b5709-7c05-4007-81f1-a4dd9d54359f",
+    "answer": "En *The Old School Services* ofrecemos soluciones personalizadas para digitalizar tu negocio y mejorar su rendimiento.",
+    "options": {
+      "buttons": [],
+      "capture": false,
+      "delay": 0,
+      "nested": [],
+      "keyword": {},
+      "callback": true
+    },
+    "refSerialize": "b156e0c6d314acc047f56d2f3df539a9",
+    "from": "5491159142277"
+  },
+  {
+    "ref": "ans_d5a9130b-32b6-44e0-aacc-d8659eb2efd6",
+    "keyword": "ans_b223903b-6c93-41b4-bb1b-1278bc81c47a",
+    "answer": "__capture_only_intended__",
+    "options": {
+      "buttons": [],
+      "capture": true,
+      "delay": 0,
+      "nested": [],
+      "keyword": {},
+      "callback": true
+    },
+    "refSerialize": "fce7985d9a2ddf0de7052ff27b95928d",
+    "from": "5491159142277"
+  },
+  {
+    "ref": "678460f5-6c4a-40f5-9303-f2e128b5858a",
+    "keyword": null,
+    "answer": "Aquí tienes una lista de nuestros servicios y productos:\n\n- Desarrollo Web 🌐\n- Soluciones CRM 📈\n- Gestión de Redes Sociales 📱\n- Optimización de Google My Business 🌟\n\nNos encantaría saber más sobre lo que necesitas. ¿Podrías darnos una idea general de qué tipo de solución de software buscas y para qué áreas de tu negocio? 🤔",
+    "options": {
+      "media": null,
+      "buttons": [],
+      "capture": false,
+      "delay": 0
+    },
+    "from": "5491159142277",
+    "refSerialize": "be9282915acc714d4730cffdda5f80a2"
+  },
+  {
+    "ref": "ans_e1dd1bfc-d3a9-4243-9fed-87cbae1b0640",
+    "keyword": "key_0009ca6a-8b31-42c7-a650-190929573812",
+    "answer": "¡Hola! Soy *TOSSiBot* 😀, el asistente virtual de *The Old School Services*.",
+    "options": {
+      "buttons": [],
+      "capture": false,
+      "delay": 0,
+      "nested": [],
+      "keyword": {},
+      "callback": true
+    },
+    "refSerialize": "dbeedb57b2eaa0c624721145a88ddce1",
     "from": "5491132413538"
   },
   {
-    "ref": "5ce6e965-66ff-40cc-bca2-3a579c3ab3ea",
+    "ref": "8da611ec-a23b-450c-8d46-072b49a812d1",
     "keyword": null,
     "answer": "¿Tu nombre es Uciel?",
     "options": {
@@ -36,8 +115,8 @@
     "refSerialize": "f17eeb7aa067acfe3c56301ce12d753f"
   },
   {
-    "ref": "ans_b3aa80ce-23f3-4451-9df1-bbd2d553d102",
-    "keyword": "ans_85deac67-f673-48f5-b552-6e9c9b5b8544",
+    "ref": "ans_22100ae6-cb7e-47f4-83e0-f67c382ea872",
+    "keyword": "ans_e1dd1bfc-d3a9-4243-9fed-87cbae1b0640",
     "answer": "__capture_only_intended__",
     "options": {
       "buttons": [],
@@ -47,120 +126,20 @@
       "keyword": {},
       "callback": true
     },
-    "refSerialize": "4d4a771acea245d4e98e58172af1c5f0",
+    "refSerialize": "aea91dc7d9b08e7e37bf8c6b1a8300d4",
     "from": "5491132413538"
   },
   {
-    "ref": "b65be5ad-ae6f-483f-8a79-099e025492e1",
-    "keyword": "c22e4066d61d81721def9b25d8a397e8",
-    "answer": "Hola",
-    "options": {},
-    "from": "5491159142277",
-    "refSerialize": "c22e4066d61d81721def9b25d8a397e8"
-  },
-  {
-    "ref": "ans_85deac67-f673-48f5-b552-6e9c9b5b8544",
-    "keyword": "key_9e20c421-4146-4294-bdc8-fe794c51b8f0",
-    "answer": "¡Hola! Soy *TOSiBot* 😀, el asistente virtual de *The Old School Services*.",
-    "options": {
-      "buttons": [],
-      "capture": false,
-      "delay": 0,
-      "nested": [],
-      "keyword": {},
-      "callback": true
-    },
-    "refSerialize": "e5fe707f28b86f09642a5cfe3d47d5a0",
-    "from": "5491159142277"
-  },
-  {
-    "ref": "c3c79246-c7ac-46d3-a6b2-155884922932",
-    "keyword": null,
-    "answer": "¿Tu nombre es Lucas Frias?",
-    "options": {
-      "media": null,
-      "buttons": [],
-      "capture": false,
-      "delay": 0
-    },
-    "from": "5491159142277",
-    "refSerialize": "9c31c01ab434e233eb41cbfae679c074"
-  },
-  {
-    "ref": "ans_b3aa80ce-23f3-4451-9df1-bbd2d553d102",
-    "keyword": "ans_85deac67-f673-48f5-b552-6e9c9b5b8544",
-    "answer": "__capture_only_intended__",
-    "options": {
-      "buttons": [],
-      "capture": true,
-      "delay": 0,
-      "nested": [],
-      "keyword": {},
-      "callback": true
-    },
-    "refSerialize": "4d4a771acea245d4e98e58172af1c5f0",
-    "from": "5491159142277"
-  },
-  {
-    "ref": "5f74a5d8-3f7b-418c-8898-0b7b185d2e86",
-    "keyword": "4d4a771acea245d4e98e58172af1c5f0",
-    "answer": "No",
+    "ref": "0eae05a8-7bae-4058-8218-55a90949578f",
+    "keyword": "aea91dc7d9b08e7e37bf8c6b1a8300d4",
+    "answer": "si",
     "options": {},
     "from": "5491132413538",
-    "refSerialize": "8e18a7e92a2a646d2d79e385a3a290d6"
+    "refSerialize": "715ca38ec28b8dabb30e75e511c57a3a"
   },
   {
-    "ref": "9d185c56-3e0f-4733-9866-5a0ee9377c53",
-    "keyword": null,
-    "answer": "¿Cuál es tu nombre?",
-    "options": {
-      "media": null,
-      "buttons": [],
-      "capture": false,
-      "delay": 0
-    },
-    "from": "5491132413538",
-    "refSerialize": "bc066a53eb21854cd84c73d6490b3a77"
-  },
-  {
-    "ref": "ans_f4da01b7-317b-4333-a8cb-a512f7d5e3e7",
-    "keyword": "ans_b3aa80ce-23f3-4451-9df1-bbd2d553d102",
-    "answer": "__capture_only_intended__",
-    "options": {
-      "buttons": [],
-      "capture": true,
-      "delay": 0,
-      "nested": [],
-      "keyword": {},
-      "callback": true
-    },
-    "refSerialize": "b3c462ef62ab957af30fd37defcf9358",
-    "from": "5491132413538"
-  },
-  {
-    "ref": "89eb26ce-7614-4678-aa24-030f8be34ee8",
-    "keyword": "b3c462ef62ab957af30fd37defcf9358",
-    "answer": "&&",
-    "options": {},
-    "from": "5491132413538",
-    "refSerialize": "c67a7f068f07c97c279f8a45b468233f"
-  },
-  {
-    "ref": "58c15889-9a9c-4b59-bdc4-08e8962b665a",
-    "keyword": null,
-    "answer": "Por favor, ingresa un nombre válido (solo letras y espacios). ¿Cuál es tu nombre?",
-    "options": {
-      "media": null,
-      "buttons": [],
-      "capture": false,
-      "delay": 0
-    },
-    "from": "5491132413538",
-    "refSerialize": "ae71f65d3efa591b1831556f39112422"
-  },
-  {
-    "ref": "ans_48bcdb46-6f87-47dd-8d1a-07b5cb5427b7",
-    "keyword": "key_b2da1a0e-686a-4b1b-b208-de9de178e204",
+    "ref": "ans_b223903b-6c93-41b4-bb1b-1278bc81c47a",
+    "keyword": "key_7d7b5709-7c05-4007-81f1-a4dd9d54359f",
     "answer": "En *The Old School Services* ofrecemos soluciones personalizadas para digitalizar tu negocio y mejorar su rendimiento.",
     "options": {
       "buttons": [],
@@ -170,12 +149,12 @@
       "keyword": {},
       "callback": true
     },
-    "refSerialize": "4bf191e76b796cb370922ac87ffed4ce",
+    "refSerialize": "b156e0c6d314acc047f56d2f3df539a9",
     "from": "5491132413538"
   },
   {
-    "ref": "ans_9186886c-dbe0-41df-b710-d49bbdb66351",
-    "keyword": "ans_48bcdb46-6f87-47dd-8d1a-07b5cb5427b7",
+    "ref": "ans_d5a9130b-32b6-44e0-aacc-d8659eb2efd6",
+    "keyword": "ans_b223903b-6c93-41b4-bb1b-1278bc81c47a",
     "answer": "__capture_only_intended__",
     "options": {
       "buttons": [],
@@ -185,11 +164,11 @@
       "keyword": {},
       "callback": true
     },
-    "refSerialize": "2369048d1703310e85842143fe9b84c9",
+    "refSerialize": "fce7985d9a2ddf0de7052ff27b95928d",
     "from": "5491132413538"
   },
   {
-    "ref": "ea01a94a-0d0b-41ee-9b08-3f065de11289",
+    "ref": "975ab200-a68c-4f63-b69b-809c660e594e",
     "keyword": null,
     "answer": "Aquí tienes una lista de nuestros servicios y productos:\n\n- Desarrollo Web 🌐\n- Soluciones CRM 📈\n- Gestión de Redes Sociales 📱\n- Optimización de Google My Business 🌟\n\nNos encantaría saber más sobre lo que necesitas. ¿Podrías darnos una idea general de qué tipo de solución de software buscas y para qué áreas de tu negocio? 🤔",
     "options": {
@@ -199,57 +178,6 @@
       "delay": 0
     },
     "from": "5491132413538",
-    "refSerialize": "be9282915acc714d4730cffdda5f80a2"
-  },
-  {
-    "ref": "a4bd653d-afc3-470b-ad76-26edbcfb9aa0",
-    "keyword": "4d4a771acea245d4e98e58172af1c5f0",
-    "answer": "Si",
-    "options": {},
-    "from": "5491159142277",
-    "refSerialize": "611b2bffc5c8bf7a02f45d2060b32e20"
-  },
-  {
-    "ref": "ans_48bcdb46-6f87-47dd-8d1a-07b5cb5427b7",
-    "keyword": "key_b2da1a0e-686a-4b1b-b208-de9de178e204",
-    "answer": "En *The Old School Services* ofrecemos soluciones personalizadas para digitalizar tu negocio y mejorar su rendimiento.",
-    "options": {
-      "buttons": [],
-      "capture": false,
-      "delay": 0,
-      "nested": [],
-      "keyword": {},
-      "callback": true
-    },
-    "refSerialize": "4bf191e76b796cb370922ac87ffed4ce",
-    "from": "5491159142277"
-  },
-  {
-    "ref": "ans_9186886c-dbe0-41df-b710-d49bbdb66351",
-    "keyword": "ans_48bcdb46-6f87-47dd-8d1a-07b5cb5427b7",
-    "answer": "__capture_only_intended__",
-    "options": {
-      "buttons": [],
-      "capture": true,
-      "delay": 0,
-      "nested": [],
-      "keyword": {},
-      "callback": true
-    },
-    "refSerialize": "2369048d1703310e85842143fe9b84c9",
-    "from": "5491159142277"
-  },
-  {
-    "ref": "445c7f6f-3787-40d7-8e18-35245d030a4e",
-    "keyword": null,
-    "answer": "Aquí tienes una lista de nuestros servicios y productos:\n\n- Desarrollo Web 🌐\n- Soluciones CRM 📈\n- Gestión de Redes Sociales 📱\n- Optimización de Google My Business 🌟\n\nNos encantaría saber más sobre lo que necesitas. ¿Podrías darnos una idea general de qué tipo de solución de software buscas y para qué áreas de tu negocio? 🤔",
-    "options": {
-      "media": null,
-      "buttons": [],
-      "capture": false,
-      "delay": 0
-    },
-    "from": "5491159142277",
     "refSerialize": "be9282915acc714d4730cffdda5f80a2"
   }
 ]

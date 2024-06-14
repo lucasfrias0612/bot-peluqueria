@@ -2,6 +2,7 @@ import { EVENTS, createFlow, addKeyword } from "@builderbot/bot";
 import { welcomeFlow } from "./welcome.flows";
 import { flowSeller } from "./seller.flow";
 import { meetingFlow } from "./meeting.flow";
+import { flowAskName } from "./askName.flow";
 
 const flowMedia = addKeyword(EVENTS.MEDIA)
     .addAnswer('He recibido tu foto o video pero actualmente no estoy preparado para interpretarla.')
@@ -35,11 +36,12 @@ const flowDocument = addKeyword(EVENTS.DOCUMENT)
     });
 
 const flows = createFlow([
-    welcomeFlow,
     flowDocument,
     flowAudio,
     flowLocation,
     flowMedia,
+    welcomeFlow,
+    flowAskName,
     flowSeller,
     meetingFlow
 ]);
