@@ -14,7 +14,7 @@ const welcomeFlow = addKeyword(EVENTS.WELCOME)
         }
         else {
             await state.update({ contactId: existingContact.id });
-            await flowDynamic(`Que bueno verte de nuevo ${existingContact.firstName}!`, { delay: 2000 });
+            await flowDynamic(`Que bueno verte de nuevo ${existingContact.firstName.charAt(0).toUpperCase() + existingContact.firstName.slice(1)}!`, { delay: 2000 });
             return gotoFlow(flowSeller);
         }
     })
