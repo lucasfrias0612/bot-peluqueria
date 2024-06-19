@@ -44,3 +44,8 @@ export async function createContact(state: BotStateStandAlone) {
     }
     return contact;
 }
+
+
+export async function getClientPlan(clienteId: string){
+    return "basic"
+}

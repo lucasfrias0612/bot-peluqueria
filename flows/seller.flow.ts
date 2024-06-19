@@ -1,49 +1,14 @@
 import { addKeyword, EVENTS } from "@builderbot/bot";
 import { BotContext } from "@builderbot/bot/dist/types";
 import { meetingFlow } from "./meeting.flow";
-import { normalizeText } from "utils/validators";
-
-
-const keywords = {
-    web: [
-        'página web', 'sitio web', 'desarrollo web', 'diseño web', 'web responsive', 'ecommerce', 'tienda en línea',
-        'diseño de páginas web', 'desarrollo de tiendas en línea', 'creación de sitios web', 'host web',
-        'web design', 'web development', 'online store', 'responsive design', 'website creation', 'web hosting',
-        'web app', 'web application', 'wordpress', 'aplicación web', 'landing page', 'host'
-    ],
-    crm: [
-        'CRM', 'gestión de clientes', 'customer relationship management', 'gestión de relaciones', 'sistema de ventas',
-        'automatización de ventas', 'salesforce', 'hubspot', 'zoho crm', 'pipedrive', 'gestión de leads',
-        'gestión de clientes', 'automatización de ventas', 'base de datos de clientes', 'gestión de pipeline', 'software CRM',
-        'lead management', 'client management', 'sales automation', 'customer database', 'pipeline management', 'crm software'
-    ],
-    socialMedia: [
-        'redes sociales', 'social media', 'gestión de redes', 'community manager', 'gestor de redes sociales',
-        'estrategia de redes sociales', 'publicidad en redes sociales', 'estrategia de social media', 'facebook', 'instagram',
-        'twitter', 'linkedin', 'marketing en redes sociales', 'creación de contenido', 'publicidad en social media',
-        'campañas en redes sociales', 'análisis de redes sociales', 'marketing de influencers', 'comunidad en línea',
-        'social media strategy', 'social media manager', 'social media marketing', 'content creation', 'social media advertising',
-        'social media campaigns', 'social media analytics', 'influencer marketing', 'online community'
-    ],
-    gmb: [
-        'Google My Business', 'GMB', 'gestión de Google My Business', 'ficha de Google', 'negocios en Google',
-        'optimización de GMB', 'google maps', 'seo local', 'listado de negocios', 'reseñas de google', 'negocio local',
-        'perfil de negocio de google', 'optimización de gmb', 'búsqueda local', 'google local', 'gestión de google my business',
-        'reputación en línea', 'página de negocio de google',
-        'local seo', 'business listing', 'google reviews', 'local business',
-        'google business profile', 'gmb optimization', 'local search', 'google my business management',
-        'online reputation', 'google business page'
-    ]
-};
-
+import { searchKeyword } from "../utils/searchKeyword";
+import { keywords } from "../utils/keywords";
 
 const detectService = (text: string) => {
-    const normalizedText = normalizeText(text);
-    for (const [service, words] of Object.entries(keywords)) {
-        if (words.some(word => normalizedText.includes(normalizeText(word)))) {
-            return service;
-        }
-    }
+    if (searchKeyword(keywords.web, text)) return 'web';
+    if (searchKeyword(keywords.crm, text)) return 'crm';
+    if (searchKeyword(keywords.socialMedia, text)) return 'socialMedia';
+    if (searchKeyword(keywords.gmb, text)) return 'gmb';
     return null;
 };
 

@@ -5,6 +5,11 @@ import { meetingFlow } from "./meeting.flow";
 import { flowAskName } from "./askName.flow";
 import { flowAskEmail } from "./askEmail.flow"
 import { flowAskLastName } from "./askLastName";
+import { customerHelpFlow } from "./customerHelp.flow";
+import { soporteTecnicoFlow } from "./soporteTecnico.flow";
+import { upgradePlanFlow } from "./upgradePlan.flow";
+import { exitFlow } from "./exit.flow";
+import { billingFlow } from "./billing.flow";
 
 const flowMedia = addKeyword(EVENTS.MEDIA)
     .addAnswer('He recibido tu foto o video pero actualmente no estoy preparado para interpretarla.')
@@ -47,7 +52,12 @@ const flows = createFlow([
     flowAskLastName,
     flowAskEmail,
     flowSeller,
-    meetingFlow    
+    meetingFlow,
+    customerHelpFlow,
+    soporteTecnicoFlow,
+    upgradePlanFlow,
+    billingFlow,
+    exitFlow
 ]);
 
 export default flows;
